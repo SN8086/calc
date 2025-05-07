@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-calc-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-calc
+  template:
+    metadata:
+      labels:
+        app: flask-calc
+    spec:
+      containers:
+      - name: flask-calc
+        image: gcr.io/YOUR_PROJECT_ID/flask-calc
+        ports:
+        - containerPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-calc-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: flask-calc
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 5000
