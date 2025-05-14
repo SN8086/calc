@@ -1,5 +1,22 @@
-# Build Docker image
-docker build -t flask-calculator .
+calc/
+│
+├── app.py
+├── templates/
+│   └── index.html
+├── Dockerfile
+├── requirements.txt
+└── .dockerignore
 
-# Run container
-docker run -p 5000:5000 flask-calculator
+
+
+
+https://github.com/SN8086/calc.git
+pip install -r reqirements.txt	
+gcloud builds submit --tag gcr.io/shri-454207/calc
+
+gcloud container clusters create my-cluster-2 \
+  --zone us-central1-a \
+  --num-nodes=2
+  
+  gcloud container clusters get-credentials my-cluster-2 --region=us-central1
+
